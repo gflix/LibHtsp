@@ -136,6 +136,7 @@ TEST(HtspMessage, FieldString)
 TEST(HtspMessage, Encode)
 {
     Flix::HtspMessage htspMessageA;
+    std::string expectedEncodedA { "\x00\x00\x00\x00", 4 };
 
     std::string dummyIdentifierB { "B" };
     std::string dummyStringB { "dummy" };
@@ -153,6 +154,7 @@ TEST(HtspMessage, Encode)
     std::string encodedA = htspMessageA.getEncoded();
     // length(4)
     EXPECT_EQ(encodedA.size(), 4);
+    EXPECT_EQ(encodedA, expectedEncodedA);
 
     std::string encodedB = htspMessageB.getEncoded();
     // length(4), string(12)
@@ -165,13 +167,39 @@ TEST(HtspMessage, Encode)
 
 TEST(HtspMessage, Decode)
 {
+    Flix::HtspMessage htspMessage;
     std::string encodedA;
-    Flix::HtspMessage htspMessageA;
+    std::string encodedB { "\x02\x01\x00\x00\x00\x01I\xff", 8 };
+    std::string encodedC { "\x03\x01\x00\x00\x00\x05Idummy", 12 };
+    std::string encodedD { "\x02\x01\x00\x00\x00\x01I\xff\x03\x01\x00\x00\x00\x05Kdummy", 20 };
+    std::string encodedE { "\x00\x00\x00\x00\x00\x00", 6 };
 
-    std::string encodedB { "\x02\x01\x00\x00\x00\x01B\xff" };
-    Flix::HtspMessage htspMessageB;
+    EXPECT_NO_THROW(htspMessage.setEncoded(encodedA));
 
-    EXPECT_NO_THROW(htspMessageA.decode(encodedA));
+    EXPECT_NO_THROW(htspMessage.setEncoded(encodedB));
+    EXPECT_EQ(htspMessage.getFieldCount(), 1);
+    EXPECT_TRUE(htspMessage.hasField("I"));
+    EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::SIGNED_64));
+    Flix::HtspMessageFieldSigned64* htspMessageFieldB = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I"));
+    EXPECT_EQ(htspMessageFieldB->getValue(), 255);
 
-    EXPECT_ANY_THROW(htspMessageB.decode(encodedB));
+    EXPECT_NO_THROW(htspMessage.setEncoded(encodedC));
+    EXPECT_EQ(htspMessage.getFieldCount(), 1);
+    EXPECT_TRUE(htspMessage.hasField("I"));
+    EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::STRING));
+    Flix::HtspMessageFieldString* htspMessageFieldC = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("I"));
+    EXPECT_EQ(htspMessageFieldC->getValue(), "dummy");
+
+    EXPECT_NO_THROW(htspMessage.setEncoded(encodedD));
+    EXPECT_EQ(htspMessage.getFieldCount(), 2);
+    EXPECT_TRUE(htspMessage.hasField("I"));
+    EXPECT_TRUE(htspMessage.hasField("K"));
+    EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::SIGNED_64));
+    EXPECT_TRUE(htspMessage.isFieldOfType("K", Flix::HtspMessageFieldType::STRING));
+    Flix::HtspMessageFieldSigned64* htspMessageFieldD1 = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I"));
+    Flix::HtspMessageFieldString* htspMessageFieldD2 = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("K"));
+    EXPECT_EQ(htspMessageFieldD1->getValue(), 255);
+    EXPECT_EQ(htspMessageFieldD2->getValue(), "dummy");
+
+    EXPECT_ANY_THROW(htspMessage.setEncoded(encodedE));
 }

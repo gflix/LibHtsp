@@ -11,6 +11,8 @@ public:
     HtspMessageFieldString(const std::string& identifier, const std::string& value);
     virtual ~HtspMessageFieldString();
 
+    const std::string& getValue(void) const;
+
 private:
     std::string value;
 };

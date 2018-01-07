@@ -9,8 +9,22 @@ HtspMessageFieldSigned64::HtspMessageFieldSigned64(const std::string& identifier
     encodeValue(value);
 }
 
+HtspMessageFieldSigned64::HtspMessageFieldSigned64(const std::string& identifier, const std::string& encodedValue):
+    GenericHtspMessageField(HtspMessageFieldType::SIGNED_64, identifier)
+{
+    this->encodedValue = encodedValue;
+    decodeValue(encodedValue);
+}
+
+
 HtspMessageFieldSigned64::~HtspMessageFieldSigned64()
 {
+}
+
+int64_t HtspMessageFieldSigned64::getValue(void) const
+{
+    return
+        value;
 }
 
 void HtspMessageFieldSigned64::encodeValue(int64_t value)
@@ -26,6 +40,21 @@ void HtspMessageFieldSigned64::encodeValue(int64_t value)
         {
             break;
         }
+    }
+}
+
+void HtspMessageFieldSigned64::decodeValue(const std::string& encodedValue)
+{
+    value = 0;
+
+    if (encodedValue.size() > 8)
+    {
+        throw std::string("invalid input for signed64 value");
+    }
+
+    for (auto character: encodedValue)
+    {
+        value = (value << 8) | static_cast<unsigned char>(character);
     }
 }
 

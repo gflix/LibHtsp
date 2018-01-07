@@ -9,6 +9,12 @@ HtspMessageFieldString::HtspMessageFieldString(const std::string& identifier, co
     encodedValue = value;
 }
 
+const std::string& HtspMessageFieldString::getValue(void) const
+{
+    return
+        value;
+}
+
 HtspMessageFieldString::~HtspMessageFieldString()
 {
 }

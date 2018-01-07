@@ -1,6 +1,7 @@
 #include "HtspMessage.h"
 #include "HtspMessageFieldSigned64.h"
 #include "HtspMessageFieldString.h"
+#include <iostream>
 
 namespace Flix {
 
@@ -55,6 +56,33 @@ bool HtspMessage::hasField(const std::string& identifier) const
     return false;
 }
 
+GenericHtspMessageField* HtspMessage::getField(const std::string& identifier) const
+{
+    if (!hasField(identifier))
+    {
+        return nullptr;
+    }
+
+    for (auto& wrappedField: fields)
+    {
+        GenericHtspMessageField* field = wrappedField.get();
+        if (field->getIdentifier() == identifier)
+        {
+            return field;
+        }
+    }
+    return nullptr;
+}
+
+bool HtspMessage::isFieldOfType(const std::string& identifier, HtspMessageFieldType type) const
+{
+    GenericHtspMessageField* field = getField(identifier);
+
+    return
+        field &&
+        field->getType() == type;
+}
+
 std::string HtspMessage::getEncoded(void) const
 {
     std::string encodedSize;
@@ -80,14 +108,59 @@ std::string HtspMessage::getEncoded(void) const
         encodedSize + encodedFields;
 }
 
-void HtspMessage::decode(std::string encoded)
+void HtspMessage::setEncoded(std::string encoded)
 {
     reset();
 
     while (!encoded.empty())
     {
-        throw std::string("not yet implemented");
+        // Minimum 6 bytes: type, length of identifier and length of data
+        size_t encodedSize = encoded.size();
+        if (encodedSize < 6)
+        {
+            throw std::string("too few bytes left in buffer");
+        }
+
+        HtspMessageFieldType type = static_cast<HtspMessageFieldType>(encoded[0]);
+        unsigned char identifierSize = static_cast<unsigned char>(encoded[1]);
+        size_t dataSize = 0;
+        for (int i = 0; i < 4; ++i)
+        {
+            dataSize = (dataSize << 8) | static_cast<unsigned char>(encoded[i + 2]);
+        }
+
+        encoded.erase(0, 6);
+
+        // process identifier and data of the message
+        encodedSize = encoded.size();
+        if (encodedSize < identifierSize + dataSize)
+        {
+            throw std::string("too few bytes left in buffer");
+        }
+
+        std::string identifier { encoded.substr(0, identifierSize) };
+        encoded.erase(0, identifierSize);
+        std::string rawValue { encoded.substr(0, dataSize) };
+        encoded.erase(0, dataSize);
+
+        switch (type)
+        {
+        case HtspMessageFieldType::SIGNED_64:
+            appendSigned64(identifier, rawValue);
+            break;
+        case HtspMessageFieldType::STRING:
+            appendString(identifier, rawValue);
+            break;
+        default:
+            throw std::string("invalid or not supported message field type");
+            break;
+        }
     }
+}
+
+void HtspMessage::appendSigned64(const std::string& identifier, const std::string& encodedValue)
+{
+    fields.push_back(HtspMessageField(new HtspMessageFieldSigned64(identifier, encodedValue)));
 }
 
 } /* namespace Flix */

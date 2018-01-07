@@ -17,13 +17,17 @@ public:
 
     size_t getFieldCount(void) const;
     bool hasField(const std::string& identifier) const;
+    GenericHtspMessageField* getField(const std::string& identifier) const;
+    bool isFieldOfType(const std::string& identifier, HtspMessageFieldType type) const;
 
     std::string getEncoded(void) const;
 
-    void decode(std::string encoded);
+    void setEncoded(std::string encoded);
 
 protected:
     HtspMessageFields fields;
+
+    void appendSigned64(const std::string& identifier, const std::string& encodedValue);
 };
 
 } /* namespace Flix */
