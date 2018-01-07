@@ -7,11 +7,13 @@ namespace Flix {
 
 class HtspMessageFieldSigned64: public GenericHtspMessageField {
 public:
-    HtspMessageFieldSigned64(int64_t value);
+    HtspMessageFieldSigned64(const std::string& identifier, int64_t value);
     virtual ~HtspMessageFieldSigned64();
 
 private:
     int64_t value;
+
+    void encodeValue(int64_t value);
 };
 
 } /* namespace Flix */

@@ -8,7 +8,7 @@ namespace Flix {
 
 class HtspMessageFieldString: public GenericHtspMessageField {
 public:
-    HtspMessageFieldString(const std::string& value);
+    HtspMessageFieldString(const std::string& identifier, const std::string& value);
     virtual ~HtspMessageFieldString();
 
 private:

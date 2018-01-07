@@ -12,10 +12,13 @@ public:
 
     void reset(void);
 
-    void appendSigned64(int64_t value);
-    void appendString(const std::string& value);
+    void appendSigned64(const std::string& identifier, int64_t value);
+    void appendString(const std::string& identifier, const std::string& value);
 
     size_t getFieldCount(void) const;
+    bool hasField(const std::string& identifier) const;
+
+    std::string getEncoded(void) const;
 
 protected:
     HtspMessageFields fields;
