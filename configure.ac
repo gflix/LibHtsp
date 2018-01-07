@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([libhtsp], [0.1], [felix.mellmann@gmail.com])
-# AC_CONFIG_SRCDIR([htsp/Dummy.cpp])
+AC_INIT([libhtsp], [0.1.0], [felix.mellmann@gmail.com])
+AC_CONFIG_SRCDIR([htsp/Htsp.cpp])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([htsp/Autoconf.h])
@@ -19,6 +19,7 @@ AX_CXX_COMPILE_STDCXX_11()
 LT_INIT
 
 # Checks for libraries.
+PKG_CHECK_MODULES([NETWORKING], [networking >= 0.1.0], [], AC_MSG_ERROR([Unable to find networking >= 0.1.0.]))
 
 # Checks for header files.
 # AC_CHECK_HEADERS([netdb.h unistd.h])
