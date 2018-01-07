@@ -20,6 +20,8 @@ public:
 
     std::string getEncoded(void) const;
 
+    void decode(std::string encoded);
+
 protected:
     HtspMessageFields fields;
 };

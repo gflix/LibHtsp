@@ -162,3 +162,16 @@ TEST(HtspMessage, Encode)
     // length(4), string(13), signed64(9)
     EXPECT_EQ(encodedC.size(), 26);
 }
+
+TEST(HtspMessage, Decode)
+{
+    std::string encodedA;
+    Flix::HtspMessage htspMessageA;
+
+    std::string encodedB { "\x02\x01\x00\x00\x00\x01B\xff" };
+    Flix::HtspMessage htspMessageB;
+
+    EXPECT_NO_THROW(htspMessageA.decode(encodedA));
+
+    EXPECT_ANY_THROW(htspMessageB.decode(encodedB));
+}

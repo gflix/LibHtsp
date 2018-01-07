@@ -80,4 +80,14 @@ std::string HtspMessage::getEncoded(void) const
         encodedSize + encodedFields;
 }
 
+void HtspMessage::decode(std::string encoded)
+{
+    reset();
+
+    while (!encoded.empty())
+    {
+        throw std::string("not yet implemented");
+    }
+}
+
 } /* namespace Flix */
