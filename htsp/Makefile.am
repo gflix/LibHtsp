@@ -12,6 +12,13 @@ libhtsp_la_SOURCES = \
     HtspMessageFieldString.cpp \
     HtspMessageFieldString.h
 
+libhtsp_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(NETWORKING_CFLAGS)
+
+libhtsp_la_LIBADD = \
+    $(NETWORKING_LIBS)
+
 headerdir = $(includedir)/htsp
 header_HEADERS = \
     Htsp.h

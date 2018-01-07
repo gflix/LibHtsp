@@ -1,6 +1,7 @@
 #ifndef HTSP_HTSPMESSAGE_H_
 #define HTSP_HTSPMESSAGE_H_
 
+#include <vector>
 #include "GenericHtspMessageField.h"
 
 namespace Flix {
@@ -29,6 +30,8 @@ protected:
 
     void appendSigned64(const std::string& identifier, const std::string& encodedValue);
 };
+
+typedef std::vector<HtspMessage> HtspMessages;
 
 } /* namespace Flix */
 

@@ -14,5 +14,9 @@ gtest_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
     $(top_builddir)/external/googletest/libgtest.la
 
+gtest_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(NETWORKING_CFLAGS)
+
 MAINTAINERCLEANFILES = \
     Makefile.in
