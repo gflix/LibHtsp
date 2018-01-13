@@ -36,3 +36,4 @@ Makefile.in
 *.la
 .deps/
 .libs/
+/examples/htsp-example-01

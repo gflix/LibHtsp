@@ -32,6 +32,7 @@ PKG_CHECK_MODULES([NETWORKING], [networking >= 0.1.0], [], AC_MSG_ERROR([Unable 
 
 AC_CONFIG_FILES([
     Makefile
+    examples/Makefile
     external/googletest/Makefile
     htsp/Makefile
     tests/Makefile

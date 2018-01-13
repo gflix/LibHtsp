@@ -3,10 +3,16 @@ lib_LTLIBRARIES = libhtsp.la
 libhtsp_la_SOURCES = \
     GenericHtspMessageField.cpp \
     GenericHtspMessageField.h \
+    GenericHtspMessageFieldBlob.cpp \
+    GenericHtspMessageFieldBlob.h \
     Htsp.cpp \
     Htsp.h \
     HtspMessage.cpp \
     HtspMessage.h \
+    HtspMessageFieldBinary.cpp \
+    HtspMessageFieldBinary.h \
+    HtspMessageFieldList.cpp \
+    HtspMessageFieldList.h \
     HtspMessageFieldSigned64.cpp \
     HtspMessageFieldSigned64.h \
     HtspMessageFieldString.cpp \

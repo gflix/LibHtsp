@@ -12,17 +12,23 @@ public:
     Htsp();
     virtual ~Htsp();
 
-    void connect(const std::string& host, int port);
+    void connect(const std::string& host, int port = getDefaultTcpPort());
     void disconnect(void);
 
     bool isConnected(void) const;
+    int getDescriptor(void) const;
+
+    void sendMessage(const HtspMessage& message);
+    void sendMessages(const HtspMessages& messages);
+    void receiveMessages(HtspMessages& messages);
 
     void appendReceivedData(const std::string& receivedData);
     void resetReceiveBuffer(void);
     bool hasMessage(void) const;
-    void getHtspMessages(HtspMessages& messages);
+    void getMessages(HtspMessages& messages);
 
     static std::string getPackageInfo(void);
+    static int getDefaultTcpPort(void);
 
 private:
     TcpClient tcpClient;

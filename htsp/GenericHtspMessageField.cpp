@@ -28,6 +28,12 @@ const std::string& GenericHtspMessageField::getIdentifier(void) const
         identifier;
 }
 
+bool GenericHtspMessageField::hasIdentifier(void) const
+{
+    return
+        !identifier.empty();
+}
+
 std::string GenericHtspMessageField::getEncoded(void) const
 {
     std::string encoded;
@@ -45,6 +51,41 @@ std::string GenericHtspMessageField::getEncoded(void) const
     encoded += encodedValue;
 
     return encoded;
+}
+
+std::ostream& operator<<(std::ostream& stream, const GenericHtspMessageField& field)
+{
+    if (field.hasIdentifier())
+    {
+        stream << field.getIdentifier() << "=";
+    }
+
+    stream << field.getType() << "(" << field.dumpValue() << ")";
+
+    return stream;
+}
+
+std::ostream& operator<<(std::ostream& stream, HtspMessageFieldType fieldType)
+{
+    switch (fieldType)
+    {
+    case HtspMessageFieldType::SIGNED_64:
+        stream << "signed64";
+        break;
+    case HtspMessageFieldType::STRING:
+        stream << "string";
+        break;
+    case HtspMessageFieldType::BINARY:
+        stream << "binary";
+        break;
+    case HtspMessageFieldType::LIST:
+        stream << "list";
+        break;
+    default:
+        stream << "unknown";
+    }
+
+    return stream;
 }
 
 } /* namespace Flix */

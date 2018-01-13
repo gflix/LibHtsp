@@ -180,14 +180,16 @@ TEST(HtspMessage, Decode)
     EXPECT_EQ(htspMessage.getFieldCount(), 1);
     EXPECT_TRUE(htspMessage.hasField("I"));
     EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::SIGNED_64));
-    Flix::HtspMessageFieldSigned64* htspMessageFieldB = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I"));
+    Flix::HtspMessageFieldSigned64* htspMessageFieldB;
+    EXPECT_NO_THROW(htspMessageFieldB = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I").get()));
     EXPECT_EQ(htspMessageFieldB->getValue(), 255);
 
     EXPECT_NO_THROW(htspMessage.setEncoded(encodedC));
     EXPECT_EQ(htspMessage.getFieldCount(), 1);
     EXPECT_TRUE(htspMessage.hasField("I"));
     EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::STRING));
-    Flix::HtspMessageFieldString* htspMessageFieldC = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("I"));
+    Flix::HtspMessageFieldString* htspMessageFieldC;
+    EXPECT_NO_THROW(htspMessageFieldC = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("I").get()));
     EXPECT_EQ(htspMessageFieldC->getValue(), "dummy");
 
     EXPECT_NO_THROW(htspMessage.setEncoded(encodedD));
@@ -196,8 +198,10 @@ TEST(HtspMessage, Decode)
     EXPECT_TRUE(htspMessage.hasField("K"));
     EXPECT_TRUE(htspMessage.isFieldOfType("I", Flix::HtspMessageFieldType::SIGNED_64));
     EXPECT_TRUE(htspMessage.isFieldOfType("K", Flix::HtspMessageFieldType::STRING));
-    Flix::HtspMessageFieldSigned64* htspMessageFieldD1 = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I"));
-    Flix::HtspMessageFieldString* htspMessageFieldD2 = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("K"));
+    Flix::HtspMessageFieldSigned64* htspMessageFieldD1;
+    Flix::HtspMessageFieldString* htspMessageFieldD2;
+    EXPECT_NO_THROW(htspMessageFieldD1 = static_cast<Flix::HtspMessageFieldSigned64*>(htspMessage.getField("I").get()));
+    EXPECT_NO_THROW(htspMessageFieldD2 = static_cast<Flix::HtspMessageFieldString*>(htspMessage.getField("K").get()));
     EXPECT_EQ(htspMessageFieldD1->getValue(), 255);
     EXPECT_EQ(htspMessageFieldD2->getValue(), "dummy");
 

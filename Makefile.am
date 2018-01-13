@@ -2,8 +2,9 @@ AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 
 SUBDIRS = \
-    external/googletest \
     htsp \
+    examples \
+    external/googletest \
     tests
 
 MAINTAINERCLEANFILES = \

@@ -1,20 +1,16 @@
 #ifndef HTSP_HTSPMESSAGEFIELDSTRING_H_
 #define HTSP_HTSPMESSAGEFIELDSTRING_H_
 
-#include <string>
-#include "GenericHtspMessageField.h"
+#include "GenericHtspMessageFieldBlob.h"
 
 namespace Flix {
 
-class HtspMessageFieldString: public GenericHtspMessageField {
+class HtspMessageFieldString: public GenericHtspMessageFieldBlob {
 public:
     HtspMessageFieldString(const std::string& identifier, const std::string& value);
     virtual ~HtspMessageFieldString();
 
-    const std::string& getValue(void) const;
-
-private:
-    std::string value;
+    virtual std::string dumpValue(void) const override;
 };
 
 } /* namespace Flix */

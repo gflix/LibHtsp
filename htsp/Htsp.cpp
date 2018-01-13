@@ -5,6 +5,9 @@
 #define PACKAGE_STRING "unknown"
 #endif
 
+#define HTSP_TCP_PORT_DEFAULT (9982)
+#define HTSP_BUFFER_SIZE (2048)
+
 namespace Flix {
 
 Htsp::Htsp()
@@ -34,6 +37,35 @@ bool Htsp::isConnected(void) const
         tcpClient.isConnected();
 }
 
+int Htsp::getDescriptor(void) const
+{
+    return
+        tcpClient.getDescriptor();
+}
+
+void Htsp::sendMessage(const HtspMessage& message)
+{
+    tcpClient.send(message.getEncoded());
+}
+
+void Htsp::sendMessages(const HtspMessages& messages)
+{
+    for (auto& message: messages)
+    {
+        sendMessage(message);
+    }
+}
+
+void Htsp::receiveMessages(HtspMessages& messages)
+{
+    std::string encoded;
+
+    tcpClient.receive(encoded, HTSP_BUFFER_SIZE);
+    appendReceivedData(encoded);
+
+    getMessages(messages);
+}
+
 void Htsp::appendReceivedData(const std::string& receivedData)
 {
     receiveBuffer += receivedData;
@@ -57,7 +89,7 @@ bool Htsp::hasMessage(void) const
         receiveBufferLength >= messageLength + 4;
 }
 
-void Htsp::getHtspMessages(HtspMessages& messages)
+void Htsp::getMessages(HtspMessages& messages)
 {
     messages.clear();
 
@@ -93,6 +125,11 @@ size_t Htsp::getLength(const std::string& value) const
 std::string Htsp::getPackageInfo(void)
 {
     return { PACKAGE_STRING };
+}
+
+int Htsp::getDefaultTcpPort(void)
+{
+    return HTSP_TCP_PORT_DEFAULT;
 }
 
 } /* namespace Flix */

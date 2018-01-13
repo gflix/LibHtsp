@@ -27,6 +27,12 @@ int64_t HtspMessageFieldSigned64::getValue(void) const
         value;
 }
 
+std::string HtspMessageFieldSigned64::dumpValue(void) const
+{
+    return
+        std::to_string(value);
+}
+
 void HtspMessageFieldSigned64::encodeValue(int64_t value)
 {
     encodedValue.clear();

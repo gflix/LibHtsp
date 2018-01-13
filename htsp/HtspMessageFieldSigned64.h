@@ -13,6 +13,8 @@ public:
 
     int64_t getValue(void) const;
 
+    virtual std::string dumpValue(void) const override;
+
 private:
     int64_t value;
 

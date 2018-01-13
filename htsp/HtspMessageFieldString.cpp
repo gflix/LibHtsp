@@ -3,20 +3,18 @@
 namespace Flix {
 
 HtspMessageFieldString::HtspMessageFieldString(const std::string& identifier, const std::string& value):
-    GenericHtspMessageField(HtspMessageFieldType::STRING, identifier),
-    value(value)
+    GenericHtspMessageFieldBlob(HtspMessageFieldType::STRING, identifier, value)
 {
-    encodedValue = value;
-}
-
-const std::string& HtspMessageFieldString::getValue(void) const
-{
-    return
-        value;
 }
 
 HtspMessageFieldString::~HtspMessageFieldString()
 {
+}
+
+std::string HtspMessageFieldString::dumpValue(void) const
+{
+    return
+        value;
 }
 
 } /* namespace Flix */

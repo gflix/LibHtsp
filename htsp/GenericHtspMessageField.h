@@ -2,6 +2,7 @@
 #define HTSP_GENERICHTSPMESSAGEFIELD_H_
 
 #include <memory>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -10,7 +11,9 @@ namespace Flix {
 enum class HtspMessageFieldType {
     UNKNOWN = 0,
     SIGNED_64 = 2,
-    STRING = 3
+    STRING = 3,
+    BINARY = 4,
+    LIST = 5,
 };
 
 class GenericHtspMessageField {
@@ -20,8 +23,11 @@ public:
 
     HtspMessageFieldType getType(void) const;
     const std::string& getIdentifier(void) const;
+    bool hasIdentifier(void) const;
 
     std::string getEncoded(void) const;
+
+    virtual std::string dumpValue(void) const = 0;
 
 protected:
     HtspMessageFieldType type;
@@ -31,6 +37,9 @@ protected:
 
 typedef std::shared_ptr<GenericHtspMessageField> HtspMessageField;
 typedef std::vector<HtspMessageField> HtspMessageFields;
+
+std::ostream& operator<<(std::ostream& stream, const GenericHtspMessageField& field);
+std::ostream& operator<<(std::ostream& stream, HtspMessageFieldType fieldType);
 
 } /* namespace Flix */
 
