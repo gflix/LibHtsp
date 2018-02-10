@@ -16,6 +16,7 @@ gtest_LDADD = \
 
 gtest_CPPFLAGS = \
     $(AM_CPPFLAGS) \
+    -I$(top_srcdir)/external/googletest/include \
     $(NETWORKING_CFLAGS)
 
 MAINTAINERCLEANFILES = \
