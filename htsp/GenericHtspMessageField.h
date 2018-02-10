@@ -29,6 +29,9 @@ public:
 
     virtual std::string dumpValue(void) const = 0;
 
+    int64_t toSigned64(void) const;
+    const std::string& toString(void) const;
+
 protected:
     HtspMessageFieldType type;
     std::string identifier;

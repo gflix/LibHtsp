@@ -2,7 +2,7 @@
 #include <string>
 #include <networking/Select.h>
 #include <htsp/Htsp.h>
-#include <htsp/HtspMessage.h>
+#include <htsp/HtspMethodHello.h>
 
 using namespace std;
 
@@ -38,35 +38,23 @@ int main(int argc, char* argv[])
         return 2;
     }
 
-    Flix::HtspMessage htspMessage;
-    htspMessage.appendString("method", "hello");
-    htspMessage.appendSigned64("htspversion", 31);
-    htspMessage.appendString("clientname", "libhtsp");
-    htspMessage.appendString("clientversion", "unknown");
+    Flix::HtspMethodHello htspMethodHello({ 31, "libhtsp", "unknown" });
 
-    htsp.sendMessage(htspMessage);
-
-    Flix::Select select;
-    select.addReadDescriptor(htsp.getDescriptor());
-    select.setTimeout(10);
-
-    if (select.execute() <= 0)
-    {
-        cerr << "Reading from server timed out! Aborting." << endl;
-        return 3;
-    }
-
-    Flix::HtspMessages htspMessages;
     try
     {
-        htsp.receiveMessages(htspMessages);
+        htsp.execute(htspMethodHello);
     }
     catch (std::string& e)
     {
-        cerr << "Could not receive from host (" << e << ")! Aborting." << endl;
-        return 4;
+        cerr << "Could not execute method \"hello\" (" << e << ")!" << endl;
     }
 
+    Flix::HtspMethodHelloResponse htspMethodHelloResponse = htspMethodHello.getResponse();
+    cout << "hello: htspVersion = " << htspMethodHelloResponse.htspVersion << endl;
+    cout << "        serverName = " << htspMethodHelloResponse.serverName << endl;
+    cout << "     serverVersion = " << htspMethodHelloResponse.serverVersion << endl;
+
+    Flix::HtspMessages htspMessages = htspMethodHello.getResponseMessages();
     cout << "htspMessages=" << htspMessages.size() << endl;
     for (auto& htspMessage: htspMessages)
     {

@@ -3,7 +3,8 @@
 
 #include <string>
 #include <networking/tcp/TcpClient.h>
-#include "HtspMessage.h"
+#include <htsp/GenericHtspMethod.h>
+#include <htsp/HtspMessage.h>
 
 namespace Flix {
 
@@ -17,6 +18,8 @@ public:
 
     bool isConnected(void) const;
     int getDescriptor(void) const;
+
+    void execute(GenericHtspMethod& method);
 
     void sendMessage(const HtspMessage& message);
     void sendMessages(const HtspMessages& messages);

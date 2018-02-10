@@ -1,8 +1,8 @@
-#include "HtspMessage.h"
-#include "HtspMessageFieldBinary.h"
-#include "HtspMessageFieldList.h"
-#include "HtspMessageFieldSigned64.h"
-#include "HtspMessageFieldString.h"
+#include <htsp/HtspMessage.h>
+#include <htsp/HtspMessageFieldBinary.h>
+#include <htsp/HtspMessageFieldList.h>
+#include <htsp/HtspMessageFieldSigned64.h>
+#include <htsp/HtspMessageFieldString.h>
 
 #if HTSP_MESSAGE_DUMP_ENCODED
     #include <iostream>

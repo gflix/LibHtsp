@@ -1,4 +1,4 @@
-#include "GenericHtspMessageFieldBlob.h"
+#include <htsp/GenericHtspMessageFieldBlob.h>
 
 namespace Flix {
 

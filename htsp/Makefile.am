@@ -1,10 +1,15 @@
 lib_LTLIBRARIES = libhtsp.la
 
+AM_CPPFLAGS = \
+    -I$(top_srcdir)
+
 libhtsp_la_SOURCES = \
     GenericHtspMessageField.cpp \
     GenericHtspMessageField.h \
     GenericHtspMessageFieldBlob.cpp \
     GenericHtspMessageFieldBlob.h \
+    GenericHtspMethod.cpp \
+    GenericHtspMethod.h \
     Htsp.cpp \
     Htsp.h \
     HtspMessage.cpp \
@@ -16,7 +21,10 @@ libhtsp_la_SOURCES = \
     HtspMessageFieldSigned64.cpp \
     HtspMessageFieldSigned64.h \
     HtspMessageFieldString.cpp \
-    HtspMessageFieldString.h
+    HtspMessageFieldString.h \
+    HtspMethodHello.cpp \
+    HtspMethodHello.h \
+    HtspTags.h
 
 libhtsp_la_CPPFLAGS = \
     $(AM_CPPFLAGS) \

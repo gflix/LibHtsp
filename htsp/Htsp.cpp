@@ -1,5 +1,6 @@
 #include "Autoconf.h"
-#include "Htsp.h"
+#include <networking/Select.h>
+#include <htsp/Htsp.h>
 
 #ifndef PACKAGE_STRING
 #define PACKAGE_STRING "unknown"
@@ -41,6 +42,24 @@ int Htsp::getDescriptor(void) const
 {
     return
         tcpClient.getDescriptor();
+}
+
+void Htsp::execute(GenericHtspMethod& method)
+{
+    sendMessage(method.getRequestMessage());
+
+    Select select;
+    select.addReadDescriptor(getDescriptor());
+    select.setTimeout(15);
+
+    if (select.execute() <= 0)
+    {
+        throw std::string("timed out reading from server");
+    }
+
+    HtspMessages htspMessages;
+    receiveMessages(htspMessages);
+    method.setResponseMessages(htspMessages);
 }
 
 void Htsp::sendMessage(const HtspMessage& message)

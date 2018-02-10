@@ -3,7 +3,7 @@
 
 #include <ostream>
 #include <vector>
-#include "GenericHtspMessageField.h"
+#include <htsp/GenericHtspMessageField.h>
 
 #define HTSP_MESSAGE_DUMP_ENCODED (1)
 

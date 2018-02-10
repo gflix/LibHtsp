@@ -1,7 +1,7 @@
 #ifndef HTSP_HTSPMESSAGEFIELDSIGNED64_H_
 #define HTSP_HTSPMESSAGEFIELDSIGNED64_H_
 
-#include "GenericHtspMessageField.h"
+#include <htsp/GenericHtspMessageField.h>
 
 namespace Flix {
 

@@ -8,7 +8,8 @@ check_PROGRAMS = $(TESTS)
 
 gtest_SOURCES = \
     TestHtsp.cpp \
-    TestHtspMessage.cpp
+    TestHtspMessage.cpp \
+    TestHtspMethodHello.cpp
 
 gtest_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \

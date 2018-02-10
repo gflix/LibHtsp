@@ -1,7 +1,7 @@
 #ifndef HTSP_HTSPMESSAGEFIELDSTRING_H_
 #define HTSP_HTSPMESSAGEFIELDSTRING_H_
 
-#include "GenericHtspMessageFieldBlob.h"
+#include <htsp/GenericHtspMessageFieldBlob.h>
 
 namespace Flix {
 

@@ -1,6 +1,6 @@
 #include <sstream>
-#include "HtspMessage.h"
-#include "HtspMessageFieldList.h"
+#include <htsp/HtspMessage.h>
+#include <htsp/HtspMessageFieldList.h>
 
 namespace Flix {
 
