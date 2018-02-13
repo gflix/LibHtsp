@@ -52,6 +52,10 @@ HtspMethodHelloResponse HtspMethodHello::getResponse(void) const
     response.htspVersion = message.getField(HTSP_ID_HTSP_VERSION)->toSigned64();
     response.serverName = message.getField(HTSP_ID_SERVER_NAME)->toString();
     response.serverVersion = message.getField(HTSP_ID_SERVER_VERSION)->toString();
+    response.challenge = message.getField(HTSP_ID_CHALLENGE)->toString();
+    response.language = message.getField(HTSP_ID_LANGUAGE)->toString();
+    response.serverCapabilities = message.getField(HTSP_ID_SERVER_CAPABILITY)->toStringList();
+    response.apiVersion = message.getField(HTSP_ID_API_VERSION)->toSigned64();
 
     return response;
 }

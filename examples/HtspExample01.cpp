@@ -2,7 +2,6 @@
 #include <string>
 #include <networking/Select.h>
 #include <htsp/Htsp.h>
-#include <htsp/HtspMethodHello.h>
 
 using namespace std;
 
@@ -38,27 +37,24 @@ int main(int argc, char* argv[])
         return 2;
     }
 
-    Flix::HtspMethodHello htspMethodHello({ 31, "libhtsp", "unknown" });
-
     try
     {
-        htsp.execute(htspMethodHello);
+        Flix::HtspMethodHelloResponse response = htsp.performMethodHello({ 31, "libhtsp", "unknown" });
+        cout << "hello: htspVersion = " << response.htspVersion << endl;
+        cout << "        serverName = " << response.serverName << endl;
+        cout << "     serverVersion = " << response.serverVersion << endl;
+        cout << "    len(challenge) = " << response.challenge.size() << endl;
+        cout << "          language = " << response.language << endl;
+        cout << "serverCapabilities = " << endl;
+        for (auto& serverCapability: response.serverCapabilities)
+        {
+            cout << "                     " << serverCapability << endl;
+        }
+        cout << "        apiVersion = " << response.apiVersion << endl;
     }
     catch (std::string& e)
     {
         cerr << "Could not execute method \"hello\" (" << e << ")!" << endl;
-    }
-
-    Flix::HtspMethodHelloResponse htspMethodHelloResponse = htspMethodHello.getResponse();
-    cout << "hello: htspVersion = " << htspMethodHelloResponse.htspVersion << endl;
-    cout << "        serverName = " << htspMethodHelloResponse.serverName << endl;
-    cout << "     serverVersion = " << htspMethodHelloResponse.serverVersion << endl;
-
-    Flix::HtspMessages htspMessages = htspMethodHello.getResponseMessages();
-    cout << "htspMessages=" << htspMessages.size() << endl;
-    for (auto& htspMessage: htspMessages)
-    {
-        cout << htspMessage << endl;
     }
 
     htsp.disconnect();

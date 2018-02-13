@@ -1,6 +1,8 @@
 #include <cassert>
+#include <htsp/HtspMessage.h>
 #include <htsp/GenericHtspMessageField.h>
 #include <htsp/GenericHtspMessageFieldBlob.h>
+#include <htsp/HtspMessageFieldList.h>
 #include <htsp/HtspMessageFieldSigned64.h>
 
 #define IDENTIFIER_MAX_LENGTH (255)
@@ -76,6 +78,22 @@ const std::string& GenericHtspMessageField::toString(void) const
 
     return
         dynamic_cast<const GenericHtspMessageFieldBlob*>(this)->getValue();
+}
+
+std::vector<std::string> GenericHtspMessageField::toStringList(void) const
+{
+    if (type != HtspMessageFieldType::LIST)
+    {
+        throw std::string("invalid field type");
+    }
+
+    std::vector<std::string> stringList;
+    for (auto& field: dynamic_cast<const HtspMessageFieldList*>(this)->getValue().getFields())
+    {
+        stringList.push_back(field->toString());
+    }
+
+    return stringList;
 }
 
 std::ostream& operator<<(std::ostream& stream, const GenericHtspMessageField& field)

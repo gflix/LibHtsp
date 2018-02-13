@@ -44,6 +44,15 @@ int Htsp::getDescriptor(void) const
         tcpClient.getDescriptor();
 }
 
+HtspMethodHelloResponse Htsp::performMethodHello(const HtspMethodHelloRequest& request)
+{
+    Flix::HtspMethodHello htspMethodHello(request);
+
+    execute(htspMethodHello);
+
+    return htspMethodHello.getResponse();
+}
+
 void Htsp::execute(GenericHtspMethod& method)
 {
     sendMessage(method.getRequestMessage());

@@ -5,6 +5,7 @@
 #include <networking/tcp/TcpClient.h>
 #include <htsp/GenericHtspMethod.h>
 #include <htsp/HtspMessage.h>
+#include <htsp/HtspMethodHello.h>
 
 namespace Flix {
 
@@ -18,6 +19,8 @@ public:
 
     bool isConnected(void) const;
     int getDescriptor(void) const;
+
+    HtspMethodHelloResponse performMethodHello(const HtspMethodHelloRequest& request);
 
     void execute(GenericHtspMethod& method);
 

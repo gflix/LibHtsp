@@ -31,6 +31,7 @@ public:
 
     int64_t toSigned64(void) const;
     const std::string& toString(void) const;
+    std::vector<std::string> toStringList(void) const;
 
 protected:
     HtspMessageFieldType type;
