@@ -1,4 +1,5 @@
 #include <cassert>
+#include <stdexcept>
 #include <htsp/HtspMessage.h>
 #include <htsp/GenericHtspMessageField.h>
 #include <htsp/GenericHtspMessageFieldBlob.h>
@@ -61,7 +62,7 @@ int64_t GenericHtspMessageField::toSigned64(void) const
 {
     if (type != HtspMessageFieldType::SIGNED_64)
     {
-        throw std::string("invalid field type");
+        throw std::invalid_argument("invalid field type");
     }
 
     return
@@ -73,7 +74,7 @@ const std::string& GenericHtspMessageField::toString(void) const
     if (type != HtspMessageFieldType::STRING &&
         type != HtspMessageFieldType::BINARY)
     {
-        throw std::string("invalid field type");
+        throw std::invalid_argument("invalid field type");
     }
 
     return
@@ -84,7 +85,7 @@ std::vector<std::string> GenericHtspMessageField::toStringList(void) const
 {
     if (type != HtspMessageFieldType::LIST)
     {
-        throw std::string("invalid field type");
+        throw std::invalid_argument("invalid field type");
     }
 
     std::vector<std::string> stringList;

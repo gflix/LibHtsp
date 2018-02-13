@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <htsp/HtspMessage.h>
 #include <htsp/HtspMessageFieldBinary.h>
 #include <htsp/HtspMessageFieldList.h>
@@ -82,7 +83,7 @@ const HtspMessageField& HtspMessage::getField(const std::string& identifier) con
 {
     if (!hasField(identifier))
     {
-        throw std::string("field " + identifier + " not found");
+        throw std::invalid_argument("field " + identifier + " not found");
     }
 
     for (auto& field: fields)
@@ -92,7 +93,7 @@ const HtspMessageField& HtspMessage::getField(const std::string& identifier) con
             return field;
         }
     }
-    throw std::string("field " + identifier + " not found");
+    throw std::invalid_argument("field " + identifier + " not found");
 }
 
 bool HtspMessage::isFieldOfType(const std::string& identifier, HtspMessageFieldType type) const
@@ -139,7 +140,7 @@ void HtspMessage::setEncoded(std::string encoded)
         size_t encodedSize = encoded.size();
         if (encodedSize < 6)
         {
-            throw std::string("too few bytes left in buffer");
+            throw std::length_error("too few bytes left in buffer");
         }
 
         HtspMessageFieldType type = static_cast<HtspMessageFieldType>(encoded[0]);
@@ -156,7 +157,7 @@ void HtspMessage::setEncoded(std::string encoded)
         encodedSize = encoded.size();
         if (encodedSize < identifierSize + dataSize)
         {
-            throw std::string("too few bytes left in buffer");
+            throw std::length_error("too few bytes left in buffer");
         }
 
         std::string identifier { encoded.substr(0, identifierSize) };
@@ -182,7 +183,7 @@ void HtspMessage::setEncoded(std::string encoded)
 #if HTSP_MESSAGE_DUMP_ENCODED
             dumpEncoded(rawValue);
 #endif
-            throw std::string("invalid or not supported message field type " + std::to_string(static_cast<int>(type)) + " for identifier " + identifier);
+            throw std::out_of_range("invalid or not supported message field type " + std::to_string(static_cast<int>(type)) + " for identifier " + identifier);
             break;
         }
     }

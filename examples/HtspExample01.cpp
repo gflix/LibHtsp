@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <networking/Select.h>
 #include <htsp/Htsp.h>
@@ -31,9 +32,9 @@ int main(int argc, char* argv[])
     {
         htsp.connect(hostname);
     }
-    catch (std::string& e)
+    catch (std::exception& e)
     {
-        cerr << "Could not connect to host \"" << hostname << "\" (" << e << ")! Aborting." << endl;
+        cerr << "Could not connect to host \"" << hostname << "\" (" << e.what() << ")! Aborting." << endl;
         return 2;
     }
 
@@ -52,9 +53,9 @@ int main(int argc, char* argv[])
         }
         cout << "        apiVersion = " << response.apiVersion << endl;
     }
-    catch (std::string& e)
+    catch (std::exception& e)
     {
-        cerr << "Could not execute method \"hello\" (" << e << ")!" << endl;
+        cerr << "Could not execute method \"hello\" (" << e.what() << ")!" << endl;
     }
 
     htsp.disconnect();

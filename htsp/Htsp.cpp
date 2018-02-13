@@ -1,4 +1,5 @@
-#include "Autoconf.h"
+#include <htsp/Autoconf.h>
+#include <stdexcept>
 #include <networking/Select.h>
 #include <htsp/Htsp.h>
 
@@ -63,7 +64,7 @@ void Htsp::execute(GenericHtspMethod& method)
 
     if (select.execute() <= 0)
     {
-        throw std::string("timed out reading from server");
+        throw std::runtime_error("timed out reading from server");
     }
 
     HtspMessages htspMessages;
@@ -138,7 +139,7 @@ size_t Htsp::getLength(const std::string& value) const
 {
     if (value.size() != 4)
     {
-        throw std::string("invalid argument");
+        throw std::invalid_argument("invalid argument");
     }
 
     size_t length = 0;

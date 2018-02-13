@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <htsp/HtspMessageFieldSigned64.h>
 
 namespace Flix {
@@ -55,7 +56,7 @@ void HtspMessageFieldSigned64::decodeValue(const std::string& encodedValue)
 
     if (encodedValue.size() > 8)
     {
-        throw std::string("invalid input for signed64 value");
+        throw std::length_error("invalid input for signed64 value");
     }
 
     for (auto character: encodedValue)

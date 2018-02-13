@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <htsp/HtspMessageFieldSigned64.h>
 #include <htsp/HtspMethodHello.h>
 #include <htsp/HtspTags.h>
@@ -36,15 +37,19 @@ HtspMethodHelloResponse HtspMethodHello::getResponse(void) const
 {
     if (responseMessages.empty())
     {
-        throw std::string("empty response");
+        throw std::length_error("empty response");
     }
     const HtspMessage& message = responseMessages.front();
 
     if (!message.hasField(HTSP_ID_HTSP_VERSION) ||
         !message.hasField(HTSP_ID_SERVER_NAME) ||
-        !message.hasField(HTSP_ID_SERVER_VERSION))
+        !message.hasField(HTSP_ID_SERVER_VERSION) ||
+        !message.hasField(HTSP_ID_CHALLENGE) ||
+        !message.hasField(HTSP_ID_LANGUAGE) ||
+        !message.hasField(HTSP_ID_SERVER_CAPABILITY) ||
+        !message.hasField(HTSP_ID_API_VERSION))
     {
-        throw std::string("invalid response");
+        throw std::out_of_range("invalid response");
     }
 
     HtspMethodHelloResponse response;
