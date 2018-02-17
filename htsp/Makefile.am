@@ -6,6 +6,8 @@ AM_CPPFLAGS = \
 libhtsp_la_SOURCES = \
     GenericHtspMessageField.cpp \
     GenericHtspMessageField.h \
+    GenericHtspMessageFieldArray.cpp \
+    GenericHtspMessageFieldArray.h \
     GenericHtspMessageFieldBlob.cpp \
     GenericHtspMessageFieldBlob.h \
     GenericHtspMethod.cpp \
@@ -18,6 +20,8 @@ libhtsp_la_SOURCES = \
     HtspMessageFieldBinary.h \
     HtspMessageFieldList.cpp \
     HtspMessageFieldList.h \
+    HtspMessageFieldMap.cpp \
+    HtspMessageFieldMap.h \
     HtspMessageFieldSigned64.cpp \
     HtspMessageFieldSigned64.h \
     HtspMessageFieldString.cpp \

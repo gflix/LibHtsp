@@ -2,6 +2,7 @@
 #include <htsp/HtspMessage.h>
 #include <htsp/HtspMessageFieldBinary.h>
 #include <htsp/HtspMessageFieldList.h>
+#include <htsp/HtspMessageFieldMap.h>
 #include <htsp/HtspMessageFieldSigned64.h>
 #include <htsp/HtspMessageFieldString.h>
 
@@ -43,6 +44,11 @@ void HtspMessage::appendBinary(const std::string& identifier, const std::string&
 void HtspMessage::appendList(const std::string& identifier, const HtspMessage& value)
 {
     fields.push_back(HtspMessageField(new HtspMessageFieldList(identifier, value)));
+}
+
+void HtspMessage::appendMap(const std::string& identifier, const HtspMessage& value)
+{
+    fields.push_back(HtspMessageField(new HtspMessageFieldMap(identifier, value)));
 }
 
 size_t HtspMessage::getFieldCount(void) const
@@ -167,6 +173,9 @@ void HtspMessage::setEncoded(std::string encoded)
 
         switch (type)
         {
+        case HtspMessageFieldType::MAP:
+            appendMap(identifier, rawValue);
+            break;
         case HtspMessageFieldType::SIGNED_64:
             appendSigned64(identifier, rawValue);
             break;
@@ -197,6 +206,11 @@ void HtspMessage::appendSigned64(const std::string& identifier, const std::strin
 void HtspMessage::appendList(const std::string& identifier, const std::string& encodedValue)
 {
     fields.push_back(HtspMessageField(new HtspMessageFieldList(identifier, encodedValue)));
+}
+
+void HtspMessage::appendMap(const std::string& identifier, const std::string& encodedValue)
+{
+    fields.push_back(HtspMessageField(new HtspMessageFieldMap(identifier, encodedValue)));
 }
 
 #if HTSP_MESSAGE_DUMP_ENCODED

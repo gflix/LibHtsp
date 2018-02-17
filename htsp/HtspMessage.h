@@ -20,6 +20,7 @@ public:
     void appendString(const std::string& identifier, const std::string& value);
     void appendBinary(const std::string& identifier, const std::string& value);
     void appendList(const std::string& identifier, const HtspMessage& value);
+    void appendMap(const std::string& identifier, const HtspMessage& value);
 
     size_t getFieldCount(void) const;
     const HtspMessageFields& getFields(void) const;
@@ -36,6 +37,7 @@ protected:
 
     void appendSigned64(const std::string& identifier, const std::string& encodedValue);
     void appendList(const std::string& identifier, const std::string& encodedValue);
+    void appendMap(const std::string& identifier, const std::string& encodedValue);
 #if HTSP_MESSAGE_DUMP_ENCODED
     void dumpEncoded(const std::string& encoded) const;
 #endif

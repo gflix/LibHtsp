@@ -10,6 +10,7 @@ namespace Flix {
 
 enum class HtspMessageFieldType {
     UNKNOWN = 0,
+    MAP = 1,
     SIGNED_64 = 2,
     STRING = 3,
     BINARY = 4,
