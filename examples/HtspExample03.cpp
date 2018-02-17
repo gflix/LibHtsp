@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <networking/Select.h>
 #include <htsp/Htsp.h>
 #include <htsp/HtspMethodEnableAsyncMetadata.h>
 
@@ -70,13 +71,18 @@ int main(int argc, char* argv[])
         return 3;
     }
 
+    size_t totalMessageCount = 0;
     Flix::HtspMessages messages;
-    do
+    Flix::Select htspSelect;
+    htspSelect.addReadDescriptor(htsp.getDescriptor());
+    htspSelect.setAutoReloadTimeout(true);
+    htspSelect.setTimeout(5);
+    while (htspSelect.execute() > 0)
     {
         htsp.receiveMessages(messages);
-        cout << "message count: " << messages.size() << endl;
+        totalMessageCount += messages.size();
+        cout << "message count: " << messages.size() << ", total: " << totalMessageCount << endl;
     }
-    while (!messages.empty());
 
     htsp.disconnect();
     return 0;
