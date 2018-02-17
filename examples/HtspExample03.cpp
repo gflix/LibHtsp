@@ -70,6 +70,14 @@ int main(int argc, char* argv[])
         return 3;
     }
 
+    Flix::HtspMessages messages;
+    do
+    {
+        htsp.receiveMessages(messages);
+        cout << "message count: " << messages.size() << endl;
+    }
+    while (!messages.empty());
+
     htsp.disconnect();
     return 0;
 }
