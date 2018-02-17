@@ -5,6 +5,7 @@
 #define HTSP_ID_CHALLENGE "challenge"
 #define HTSP_ID_CLIENT_NAME "clientname"
 #define HTSP_ID_CLIENT_VERSION "clientversion"
+#define HTSP_ID_DIGEST "digest"
 #define HTSP_ID_HTSP_VERSION "htspversion"
 #define HTSP_ID_LANGUAGE "language"
 #define HTSP_ID_METHOD "method"

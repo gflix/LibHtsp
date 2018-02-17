@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <networking/digest/Sha1.h>
 #include <htsp/HtspMethodAuthenticate.h>
 #include <htsp/HtspTags.h>
 
@@ -25,6 +26,17 @@ HtspMethodAuthenticate::HtspMethodAuthenticate(
     if (!request.username.empty())
     {
         requestMessage.appendString(HTSP_ID_USERNAME, request.username);
+        if (!request.password.empty() && !challenge.empty())
+        {
+            Sha1 sha1;
+
+            sha1.appendMessage(request.password);
+            sha1.appendMessage(challenge);
+
+            std::string hash = sha1.getHash();
+
+            requestMessage.appendBinary(HTSP_ID_DIGEST, hash);
+        }
     }
 }
 
@@ -41,14 +53,16 @@ HtspMethodAuthenticateResponse HtspMethodAuthenticate::getResponse(void) const
 
     const HtspMessage& message = responseMessages.front();
 
-    if (!message.hasField(HTSP_ID_NO_ACCESS))
-    {
-        throw std::out_of_range("invalid response");
-    }
-
     HtspMethodAuthenticateResponse response;
 
-    response.accessGranted = message.getField(HTSP_ID_NO_ACCESS)->toSigned64() != 1;
+    if (message.hasField(HTSP_ID_NO_ACCESS))
+    {
+        response.accessGranted = message.getField(HTSP_ID_NO_ACCESS)->toSigned64() != 1;
+    }
+    else
+    {
+        response.accessGranted = true;
+    }
 
     return response;
 }
