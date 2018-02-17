@@ -5,6 +5,7 @@
 #include <networking/tcp/TcpClient.h>
 #include <htsp/GenericHtspMethod.h>
 #include <htsp/HtspMessage.h>
+#include <htsp/HtspMethodAuthenticate.h>
 #include <htsp/HtspMethodHello.h>
 
 namespace Flix {
@@ -20,6 +21,7 @@ public:
     bool isConnected(void) const;
     int getDescriptor(void) const;
 
+    HtspMethodAuthenticateResponse performMethodAuthenticate(const HtspMethodAuthenticateRequest& request);
     HtspMethodHelloResponse performMethodHello(const HtspMethodHelloRequest& request);
 
     void execute(GenericHtspMethod& method);
@@ -39,6 +41,8 @@ public:
 private:
     TcpClient tcpClient;
     std::string receiveBuffer;
+
+    std::string authenticationChallenge;
 
     size_t getLength(const std::string& value) const;
 };

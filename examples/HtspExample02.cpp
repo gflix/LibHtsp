@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <string>
 #include <htsp/Htsp.h>
-#include <htsp/HtspMethodAuthenticate.h>
 
 using namespace std;
 
@@ -64,9 +63,7 @@ int main(int argc, char* argv[])
     Flix::HtspMethodAuthenticateResponse authenticateResponse;
     try
     {
-        Flix::HtspMethodAuthenticate methodAuthenticate({ username, password }, helloResponse.challenge);
-        htsp.execute(methodAuthenticate);
-        authenticateResponse = methodAuthenticate.getResponse();
+        authenticateResponse = htsp.performMethodAuthenticate({ username, password });
         cout << "authenticate: accessGranted = " << std::string(authenticateResponse.accessGranted ? "yes" : "no") << endl;
     }
     catch (std::exception& e)

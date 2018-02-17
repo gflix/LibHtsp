@@ -45,13 +45,25 @@ int Htsp::getDescriptor(void) const
         tcpClient.getDescriptor();
 }
 
+HtspMethodAuthenticateResponse Htsp::performMethodAuthenticate(const HtspMethodAuthenticateRequest& request)
+{
+    Flix::HtspMethodAuthenticate htspMethodAuthenticate(request, authenticationChallenge);
+
+    execute(htspMethodAuthenticate);
+
+    return htspMethodAuthenticate.getResponse();
+}
+
 HtspMethodHelloResponse Htsp::performMethodHello(const HtspMethodHelloRequest& request)
 {
     Flix::HtspMethodHello htspMethodHello(request);
 
     execute(htspMethodHello);
 
-    return htspMethodHello.getResponse();
+    HtspMethodHelloResponse response = htspMethodHello.getResponse();
+    authenticationChallenge = response.challenge;
+
+    return response;
 }
 
 void Htsp::execute(GenericHtspMethod& method)

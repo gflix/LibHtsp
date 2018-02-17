@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <string>
 #include <htsp/Htsp.h>
-#include <htsp/HtspMethodAuthenticate.h>
 #include <htsp/HtspMethodEnableAsyncMetadata.h>
 
 using namespace std;
@@ -65,9 +64,7 @@ int main(int argc, char* argv[])
 
     try
     {
-        Flix::HtspMethodAuthenticate methodAuthenticate({ username, password }, helloResponse.challenge);
-        htsp.execute(methodAuthenticate);
-        if (!methodAuthenticate.getResponse().accessGranted)
+        if (!htsp.performMethodAuthenticate({ username, password }).accessGranted)
         {
             throw std::runtime_error("access denied");
         }
