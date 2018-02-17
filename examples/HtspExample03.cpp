@@ -62,8 +62,7 @@ int main(int argc, char* argv[])
     try
     {
         Flix::HtspMethodEnableAsyncMetadataRequest request { false };
-        Flix::HtspMethodEnableAsyncMetadata methodEnableAsyncMetadata(request);
-        htsp.execute(methodEnableAsyncMetadata);
+        htsp.performMethodEnableAsyncMetadata(request);
     }
     catch (std::exception& e)
     {

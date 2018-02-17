@@ -8,7 +8,7 @@
 #endif
 
 #define HTSP_TCP_PORT_DEFAULT (9982)
-#define HTSP_BUFFER_SIZE (2048)
+#define HTSP_BUFFER_SIZE (65536)
 
 namespace Flix {
 
@@ -47,16 +47,23 @@ int Htsp::getDescriptor(void) const
 
 HtspMethodAuthenticateResponse Htsp::performMethodAuthenticate(const HtspMethodAuthenticateRequest& request)
 {
-    Flix::HtspMethodAuthenticate htspMethodAuthenticate(request, authenticationChallenge);
+    HtspMethodAuthenticate htspMethodAuthenticate(request, authenticationChallenge);
 
     execute(htspMethodAuthenticate);
 
     return htspMethodAuthenticate.getResponse();
 }
 
+void Htsp::performMethodEnableAsyncMetadata(const HtspMethodEnableAsyncMetadataRequest& request)
+{
+    HtspMethodEnableAsyncMetadata htspMethodEnableAsyncMetadata(request);
+
+    execute(htspMethodEnableAsyncMetadata);
+}
+
 HtspMethodHelloResponse Htsp::performMethodHello(const HtspMethodHelloRequest& request)
 {
-    Flix::HtspMethodHello htspMethodHello(request);
+    HtspMethodHello htspMethodHello(request);
 
     execute(htspMethodHello);
 

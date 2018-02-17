@@ -6,6 +6,7 @@
 #include <htsp/GenericHtspMethod.h>
 #include <htsp/HtspMessage.h>
 #include <htsp/HtspMethodAuthenticate.h>
+#include <htsp/HtspMethodEnableAsyncMetadata.h>
 #include <htsp/HtspMethodHello.h>
 
 namespace Flix {
@@ -21,8 +22,12 @@ public:
     bool isConnected(void) const;
     int getDescriptor(void) const;
 
-    HtspMethodAuthenticateResponse performMethodAuthenticate(const HtspMethodAuthenticateRequest& request);
-    HtspMethodHelloResponse performMethodHello(const HtspMethodHelloRequest& request);
+    HtspMethodAuthenticateResponse performMethodAuthenticate(
+        const HtspMethodAuthenticateRequest& request);
+    void performMethodEnableAsyncMetadata(
+        const HtspMethodEnableAsyncMetadataRequest& request);
+    HtspMethodHelloResponse performMethodHello(
+        const HtspMethodHelloRequest& request);
 
     void execute(GenericHtspMethod& method);
 
