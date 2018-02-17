@@ -43,27 +43,10 @@ int main(int argc, char* argv[])
     try
     {
         htsp.connect(hostname);
-    }
-    catch (std::exception& e)
-    {
-        cerr << "Could not connect to host \"" << hostname << "\" (" << e.what() << ")! Aborting." << endl;
-        return 2;
-    }
 
-    Flix::HtspMethodHelloResponse helloResponse;
-    try
-    {
-        helloResponse = htsp.performMethodHello({ 31, "libhtsp", "unknown" });
+        Flix::HtspMethodHelloResponse helloResponse = htsp.performMethodHello({ 31, "libhtsp", "unknown" });
         cout << "hello: " << helloResponse.serverName << "/" << helloResponse.serverVersion << endl;
-    }
-    catch (std::exception& e)
-    {
-        cerr << "Could not execute method \"hello\" (" << e.what() << ")!" << endl;
-        return 3;
-    }
 
-    try
-    {
         if (!htsp.performMethodAuthenticate({ username, password }).accessGranted)
         {
             throw std::runtime_error("access denied");
@@ -71,8 +54,8 @@ int main(int argc, char* argv[])
     }
     catch (std::exception& e)
     {
-        cerr << "Could not execute method \"authenticate\" (" << e.what() << ")!" << endl;
-        return 4;
+        cerr << "Could not authenticate to server (" << e.what() << ")!" << endl;
+        return 2;
     }
 
     try
@@ -84,7 +67,7 @@ int main(int argc, char* argv[])
     catch (std::exception& e)
     {
         cerr << "Could not execute method \"enableAsyncMetadata\" (" << e.what() << ")!" << endl;
-        return 5;
+        return 3;
     }
 
     htsp.disconnect();
