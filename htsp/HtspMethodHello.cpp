@@ -39,6 +39,7 @@ HtspMethodHelloResponse HtspMethodHello::getResponse(void) const
     {
         throw std::length_error("empty response");
     }
+
     const HtspMessage& message = responseMessages.front();
 
     if (!message.hasField(HTSP_ID_HTSP_VERSION) ||

@@ -22,6 +22,8 @@ libhtsp_la_SOURCES = \
     HtspMessageFieldSigned64.h \
     HtspMessageFieldString.cpp \
     HtspMessageFieldString.h \
+    HtspMethodAuthenticate.cpp \
+    HtspMethodAuthenticate.h \
     HtspMethodHello.cpp \
     HtspMethodHello.h \
     HtspTags.h
