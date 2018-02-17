@@ -24,6 +24,8 @@ libhtsp_la_SOURCES = \
     HtspMessageFieldString.h \
     HtspMethodAuthenticate.cpp \
     HtspMethodAuthenticate.h \
+    HtspMethodEnableAsyncMetadata.cpp \
+    HtspMethodEnableAsyncMetadata.h \
     HtspMethodHello.cpp \
     HtspMethodHello.h \
     HtspTags.h
