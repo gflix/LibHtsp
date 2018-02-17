@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-#include <networking/Select.h>
 #include <htsp/Htsp.h>
 #include <htsp/HtspMethodAuthenticate.h>
 
@@ -9,12 +8,13 @@ using namespace std;
 
 void printUsage(const string& programName)
 {
-    cerr << "USAGE: " << programName << " HOST[:PORT] [USERNAME]" << endl;
+    cerr << "USAGE: " << programName << " HOST[:PORT] [USERNAME] [PASSWORD]" << endl;
     cerr << endl;
     cerr << "Arguments:" << endl;
-    cerr << "  HOST     Hostname of TVheadend server" << endl;
-    cerr << "  PORT     TCP port of HTSP service (default: " << Flix::Htsp::getDefaultTcpPort() << ")" << endl;
-    cerr << "  USERNAME Username to use for authentication" << endl;
+    cerr << "  HOST      Hostname of TVheadend server" << endl;
+    cerr << "  PORT      TCP port of HTSP service (default: " << Flix::Htsp::getDefaultTcpPort() << ")" << endl;
+    cerr << "  USERNAME  Username to use for authentication" << endl;
+    cerr << "  PASSWORD  Password to use for authentication" << endl;
     cerr << endl;
 }
 
