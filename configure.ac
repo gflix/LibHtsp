@@ -23,7 +23,8 @@ LT_INIT
 PKG_CHECK_MODULES([NETWORKING], [networking >= 0.1.2], [], AC_MSG_ERROR([Unable to find networking >= 0.1.2.]))
 
 # Checks for header files.
-AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h limits.h netdb.h stddef.h sys/socket.h sys/time.h sys/timeb.h wchar.h wctype.h])
+AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h limits.h netdb.h])
+AC_CHECK_HEADERS([stddef.h sys/socket.h sys/time.h sys/timeb.h wchar.h wctype.h])
 AC_CHECK_HEADER_STDBOOL
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -34,7 +35,8 @@ AC_TYPE_PID_T
 AC_CHECK_TYPES([ptrdiff_t])
 
 # Checks for library functions.
-AC_CHECK_FUNCS([dup2 fchdir getcwd gettimeofday localtime_r memset mkdir munmap regcomp rmdir socket strcasecmp strchr strdup strerror strrchr strstr strtol strtoull])
+AC_CHECK_FUNCS([dup2 fchdir getcwd gettimeofday localtime_r memset mkdir munmap regcomp])
+AC_CHECK_FUNCS([rmdir socket strcasecmp strchr strdup strerror strrchr strstr strtol strtoull])
 
 AC_FUNC_FORK
 AC_FUNC_MALLOC
