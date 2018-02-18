@@ -22,6 +22,8 @@ libhtsp_la_SOURCES = \
     HtspClientMethodChannelAdd.h \
     HtspClientMethodTagAdd.cpp \
     HtspClientMethodTagAdd.h \
+    HtspClientMethodTagUpdate.cpp \
+    HtspClientMethodTagUpdate.h \
     HtspMessage.cpp \
     HtspMessage.h \
     HtspMessageFieldBinary.cpp \

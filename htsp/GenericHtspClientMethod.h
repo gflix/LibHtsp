@@ -11,6 +11,7 @@ namespace Flix {
 enum class HtspClientMethodType {
     UNKNOWN,
     TAG_ADD,
+    TAG_UPDATE,
     CHANNEL_ADD,
 };
 

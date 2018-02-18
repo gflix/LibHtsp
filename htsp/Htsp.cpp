@@ -6,6 +6,7 @@
 #include <htsp/Htsp.h>
 #include <htsp/HtspClientMethodChannelAdd.h>
 #include <htsp/HtspClientMethodTagAdd.h>
+#include <htsp/HtspClientMethodTagUpdate.h>
 
 #ifndef PACKAGE_STRING
 #define PACKAGE_STRING "unknown"
@@ -192,6 +193,10 @@ void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMet
         if (method == HTSP_METHOD_TAG_ADD)
         {
             clientMethod.reset(new HtspClientMethodTagAdd(*it));
+        }
+        else if (method == HTSP_METHOD_TAG_UPDATE)
+        {
+            clientMethod.reset(new HtspClientMethodTagUpdate(*it));
         }
         else if (method == HTSP_METHOD_CHANNEL_ADD)
         {

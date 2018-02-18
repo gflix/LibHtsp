@@ -33,5 +33,6 @@
 #define HTSP_METHOD_ENABLE_ASYNC_METADATA "enableAsyncMetadata"
 #define HTSP_METHOD_HELLO "hello"
 #define HTSP_METHOD_TAG_ADD "tagAdd"
+#define HTSP_METHOD_TAG_UPDATE "tagUpdate"
 
 #endif /* HTSP_HTSPTAGS_H_ */
