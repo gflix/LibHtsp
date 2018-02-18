@@ -6,6 +6,8 @@ AM_CPPFLAGS = \
 libhtsp_la_SOURCES = \
     GenericHtspClientMethod.cpp \
     GenericHtspClientMethod.h \
+    GenericHtspClientMethodAutorecEntry.cpp \
+    GenericHtspClientMethodAutorecEntry.h \
     GenericHtspClientMethodTag.cpp \
     GenericHtspClientMethodTag.h \
     GenericHtspMessageField.cpp \
@@ -18,6 +20,8 @@ libhtsp_la_SOURCES = \
     GenericHtspMethod.h \
     Htsp.cpp \
     Htsp.h \
+    HtspClientMethodAutorecEntryAdd.cpp \
+    HtspClientMethodAutorecEntryAdd.h \
     HtspClientMethodChannelAdd.cpp \
     HtspClientMethodChannelAdd.h \
     HtspClientMethodTagAdd.cpp \

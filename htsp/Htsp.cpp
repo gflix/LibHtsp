@@ -4,6 +4,7 @@
 #include <networking/Select.h>
 #include <htsp/HtspTags.h>
 #include <htsp/Htsp.h>
+#include <htsp/HtspClientMethodAutorecEntryAdd.h>
 #include <htsp/HtspClientMethodChannelAdd.h>
 #include <htsp/HtspClientMethodTagAdd.h>
 #include <htsp/HtspClientMethodTagUpdate.h>
@@ -202,15 +203,20 @@ void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMet
         {
             clientMethod.reset(new HtspClientMethodChannelAdd(*it));
         }
+        else if (method == HTSP_METHOD_AUTOREC_ENTRY_ADD)
+        {
+            clientMethod.reset(new HtspClientMethodAutorecEntryAdd(*it));
+        }
         else
         {
-            std::cout << *it << std::endl;
+            std::cout << "**> " <<  *it << std::endl;
             throw std::runtime_error("invalid client method \"" + method + "\"");
         }
 
         if (clientMethod.get())
         {
-            std::cout << *clientMethod << std::endl;
+            std::cout << "--> " << *clientMethod << std::endl;
+            std::cout << "==> " << *it << std::endl;
             clientMethods.push_back(clientMethod);
         }
 

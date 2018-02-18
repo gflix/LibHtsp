@@ -5,7 +5,6 @@
 
 namespace Flix {
 
-
 HtspClientMethodTagRequest::HtspClientMethodTagRequest(void):
     id(-1),
     sortingIndex(-1),
