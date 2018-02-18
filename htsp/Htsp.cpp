@@ -1,7 +1,10 @@
 #include <htsp/Autoconf.h>
+#include <iostream>
 #include <stdexcept>
 #include <networking/Select.h>
+#include <htsp/HtspTags.h>
 #include <htsp/Htsp.h>
+#include <htsp/HtspClientMethodTagAdd.h>
 
 #ifndef PACKAGE_STRING
 #define PACKAGE_STRING "unknown"
@@ -168,6 +171,36 @@ size_t Htsp::getLength(const std::string& value) const
     }
 
     return length;
+}
+
+void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMethods)
+{
+    clientMethods.clear();
+
+    for (auto it = messages.begin(); it != messages.end();)
+    {
+        if (!it->hasField(HTSP_ID_METHOD))
+        {
+            ++it;
+            continue;
+        }
+
+        std::string method = it->getField(HTSP_ID_METHOD)->toString();
+        HtspClientMethod clientMethod;
+
+        if (method == HTSP_METHOD_TAG_ADD)
+        {
+            clientMethod.reset(new HtspClientMethodTagAdd(*it));
+        }
+
+        if (clientMethod.get())
+        {
+            std::cout << *clientMethod << " (" << *it << ")" << std::endl;
+            clientMethods.push_back(clientMethod);
+        }
+
+        it = messages.erase(it);
+    }
 }
 
 std::string Htsp::getPackageInfo(void)

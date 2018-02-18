@@ -3,6 +3,7 @@
 
 #include <string>
 #include <networking/tcp/TcpClient.h>
+#include <htsp/GenericHtspClientMethod.h>
 #include <htsp/GenericHtspMethod.h>
 #include <htsp/HtspMessage.h>
 #include <htsp/HtspMethodAuthenticate.h>
@@ -39,6 +40,8 @@ public:
     void resetReceiveBuffer(void);
     bool hasMessage(void) const;
     void getMessages(HtspMessages& messages);
+
+    void getClientMethods(HtspMessages& messages, HtspClientMethods& clientMethods);
 
     static std::string getPackageInfo(void);
     static int getDefaultTcpPort(void);
