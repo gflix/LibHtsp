@@ -7,6 +7,7 @@
 #include <htsp/HtspClientMethodAutorecEntryAdd.h>
 #include <htsp/HtspClientMethodChannelAdd.h>
 #include <htsp/HtspClientMethodDvrEntryAdd.h>
+#include <htsp/HtspClientMethodDvrEntryUpdate.h>
 #include <htsp/HtspClientMethodInitialSyncCompleted.h>
 #include <htsp/HtspClientMethodTagAdd.h>
 #include <htsp/HtspClientMethodTagUpdate.h>
@@ -212,6 +213,10 @@ void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMet
         else if (method == HTSP_METHOD_DVR_ENTRY_ADD)
         {
             clientMethod.reset(new HtspClientMethodDvrEntryAdd(*it));
+        }
+        else if (method == HTSP_METHOD_DVR_ENTRY_UPDATE)
+        {
+            clientMethod.reset(new HtspClientMethodDvrEntryUpdate(*it));
         }
         else if (method == HTSP_METHOD_INITIAL_SYNC_COMPLETED)
         {

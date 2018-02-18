@@ -15,6 +15,7 @@ enum class HtspClientMethodType {
     CHANNEL_ADD,
     AUTOREC_ENTRY_ADD,
     DVR_ENTRY_ADD,
+    DVR_ENTRY_UPDATE,
     INITIAL_SYNC_COMPLETED,
 };
 

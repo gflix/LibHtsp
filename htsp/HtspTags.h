@@ -44,6 +44,7 @@
 #define HTSP_METHOD_AUTOREC_ENTRY_ADD "autorecEntryAdd"
 #define HTSP_METHOD_CHANNEL_ADD "channelAdd"
 #define HTSP_METHOD_DVR_ENTRY_ADD "dvrEntryAdd"
+#define HTSP_METHOD_DVR_ENTRY_UPDATE "dvrEntryUpdate"
 #define HTSP_METHOD_ENABLE_ASYNC_METADATA "enableAsyncMetadata"
 #define HTSP_METHOD_HELLO "hello"
 #define HTSP_METHOD_INITIAL_SYNC_COMPLETED "initialSyncCompleted"

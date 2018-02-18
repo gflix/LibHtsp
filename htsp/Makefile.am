@@ -28,6 +28,8 @@ libhtsp_la_SOURCES = \
     HtspClientMethodChannelAdd.h \
     HtspClientMethodDvrEntryAdd.cpp \
     HtspClientMethodDvrEntryAdd.h \
+    HtspClientMethodDvrEntryUpdate.cpp \
+    HtspClientMethodDvrEntryUpdate.h \
     HtspClientMethodInitialSyncCompleted.cpp \
     HtspClientMethodInitialSyncCompleted.h \
     HtspClientMethodTagAdd.cpp \
