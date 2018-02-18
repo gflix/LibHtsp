@@ -1,5 +1,5 @@
 #include <htsp/Autoconf.h>
-#include <iostream>
+#include <sstream>
 #include <stdexcept>
 #include <networking/Select.h>
 #include <htsp/HtspTags.h>
@@ -181,6 +181,7 @@ size_t Htsp::getLength(const std::string& value) const
 
 void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMethods)
 {
+    std::stringstream stream;
     clientMethods.clear();
 
     for (auto it = messages.begin(); it != messages.end();)
@@ -224,14 +225,12 @@ void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMet
         }
         else
         {
-            std::cout << "**> " <<  *it << std::endl;
-            throw std::runtime_error("invalid client method \"" + method + "\"");
+            stream << *it;
+            throw std::runtime_error("invalid client method \"" + method + "\", content [" + stream.str() + "]");
         }
 
         if (clientMethod.get())
         {
-            std::cout << "--> " << *clientMethod << std::endl;
-            std::cout << "==> " << *it << std::endl;
             clientMethods.push_back(clientMethod);
         }
 
