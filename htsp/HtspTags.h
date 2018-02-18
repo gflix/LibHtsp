@@ -14,6 +14,11 @@
 #define HTSP_ID_SERVER_CAPABILITY "servercapability"
 #define HTSP_ID_SERVER_NAME "servername"
 #define HTSP_ID_SERVER_VERSION "serverversion"
+#define HTSP_ID_TAG_ICON "tagIcon"
+#define HTSP_ID_TAG_ID "tagId"
+#define HTSP_ID_TAG_INDEX "tagIndex"
+#define HTSP_ID_TAG_NAME "tagName"
+#define HTSP_ID_TAG_TITLED_ICON "tagTitledIcon"
 #define HTSP_ID_USERNAME "username"
 
 #define HTSP_METHOD_AUTHENTICATE "authenticate"
