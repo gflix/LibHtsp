@@ -11,7 +11,13 @@ namespace Flix {
 enum class HtspClientMethodType {
     UNKNOWN,
     TAG_ADD,
-    CHANNEL_ADD
+    CHANNEL_ADD,
+};
+
+enum class HtspClientMethodAction {
+    UNKNOWN,
+    ADD,
+    UPDATE,
 };
 
 class GenericHtspClientMethod {
@@ -31,6 +37,7 @@ typedef std::vector<HtspClientMethod> HtspClientMethods;
 
 std::ostream& operator<<(std::ostream& stream, const GenericHtspClientMethod& method);
 std::ostream& operator<<(std::ostream& stream, HtspClientMethodType type);
+std::ostream& operator<<(std::ostream& stream, HtspClientMethodAction action);
 
 } /* namespace Flix */
 

@@ -40,4 +40,21 @@ std::ostream& operator<<(std::ostream& stream, HtspClientMethodType type)
     return stream;
 }
 
+std::ostream& operator<<(std::ostream& stream, HtspClientMethodAction action)
+{
+    switch (action)
+    {
+    case HtspClientMethodAction::ADD:
+        stream << "add";
+        break;
+    case HtspClientMethodAction::UPDATE:
+        stream << "update";
+        break;
+    default:
+        stream << "unknown";
+    }
+
+    return stream;
+}
+
 } /* namespace Flix */
