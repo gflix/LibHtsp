@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
     htspSelect.addReadDescriptor(htsp.getDescriptor());
     htspSelect.setAutoReloadTimeout(true);
     htspSelect.setTimeout(5);
+    bool initialSyncCompleted = false;
 
     while (htspSelect.execute() > 0)
     {
@@ -75,8 +76,20 @@ int main(int argc, char* argv[])
         Flix::HtspClientMethods clientMethods;
         htsp.getClientMethods(messages, clientMethods);
 
-        cout << "remaining messages=" << messages.size() <<
-            ", client methods=" << clientMethods.size() << endl;
+        for (auto& clientMethod: clientMethods)
+        {
+            cout << *clientMethod << endl;
+
+            if (clientMethod->getType() == Flix::HtspClientMethodType::INITIAL_SYNC_COMPLETED)
+            {
+                initialSyncCompleted = true;
+            }
+        }
+
+        if (initialSyncCompleted)
+        {
+            break;
+        }
     }
 
     htsp.disconnect();
