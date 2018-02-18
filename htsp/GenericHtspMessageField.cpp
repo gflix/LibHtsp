@@ -113,6 +113,9 @@ std::ostream& operator<<(std::ostream& stream, HtspMessageFieldType fieldType)
 {
     switch (fieldType)
     {
+    case HtspMessageFieldType::MAP:
+        stream << "map";
+        break;
     case HtspMessageFieldType::SIGNED_64:
         stream << "signed64";
         break;
