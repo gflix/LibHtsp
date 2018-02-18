@@ -59,9 +59,9 @@ void HtspMessageFieldSigned64::decodeValue(const std::string& encodedValue)
         throw std::length_error("invalid input for signed64 value");
     }
 
-    for (auto character: encodedValue)
+    for (auto it = encodedValue.rbegin(); it != encodedValue.rend(); ++it)
     {
-        value = (value << 8) | static_cast<unsigned char>(character);
+        value = (value << 8) | static_cast<unsigned char>(*it);
     }
 }
 
