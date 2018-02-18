@@ -4,6 +4,7 @@
 #include <networking/Select.h>
 #include <htsp/HtspTags.h>
 #include <htsp/Htsp.h>
+#include <htsp/HtspClientMethodChannelAdd.h>
 #include <htsp/HtspClientMethodTagAdd.h>
 
 #ifndef PACKAGE_STRING
@@ -192,10 +193,19 @@ void Htsp::getClientMethods(HtspMessages& messages, HtspClientMethods& clientMet
         {
             clientMethod.reset(new HtspClientMethodTagAdd(*it));
         }
+        else if (method == HTSP_METHOD_CHANNEL_ADD)
+        {
+            clientMethod.reset(new HtspClientMethodChannelAdd(*it));
+        }
+        else
+        {
+            std::cout << *it << std::endl;
+            throw std::runtime_error("invalid client method \"" + method + "\"");
+        }
 
         if (clientMethod.get())
         {
-            std::cout << *clientMethod << " (" << *it << ")" << std::endl;
+            std::cout << *clientMethod << std::endl;
             clientMethods.push_back(clientMethod);
         }
 

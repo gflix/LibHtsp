@@ -3,6 +3,11 @@
 
 #define HTSP_ID_API_VERSION "api_version"
 #define HTSP_ID_CHALLENGE "challenge"
+#define HTSP_ID_CHANNEL_ICON "channelIcon"
+#define HTSP_ID_CHANNEL_ID "channelId"
+#define HTSP_ID_CHANNEL_NAME "channelName"
+#define HTSP_ID_CHANNEL_NUMBER "channelNumber"
+#define HTSP_ID_CHANNEL_NUMBER_MINOR "channelNumberMinor"
 #define HTSP_ID_CLIENT_NAME "clientname"
 #define HTSP_ID_CLIENT_VERSION "clientversion"
 #define HTSP_ID_DIGEST "digest"
@@ -14,6 +19,8 @@
 #define HTSP_ID_SERVER_CAPABILITY "servercapability"
 #define HTSP_ID_SERVER_NAME "servername"
 #define HTSP_ID_SERVER_VERSION "serverversion"
+#define HTSP_ID_SERVICES "services"
+#define HTSP_ID_TAGS "tags"
 #define HTSP_ID_TAG_ICON "tagIcon"
 #define HTSP_ID_TAG_ID "tagId"
 #define HTSP_ID_TAG_INDEX "tagIndex"
@@ -22,6 +29,7 @@
 #define HTSP_ID_USERNAME "username"
 
 #define HTSP_METHOD_AUTHENTICATE "authenticate"
+#define HTSP_METHOD_CHANNEL_ADD "channelAdd"
 #define HTSP_METHOD_ENABLE_ASYNC_METADATA "enableAsyncMetadata"
 #define HTSP_METHOD_HELLO "hello"
 #define HTSP_METHOD_TAG_ADD "tagAdd"

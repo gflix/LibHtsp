@@ -30,6 +30,9 @@ std::ostream& operator<<(std::ostream& stream, HtspClientMethodType type)
     case HtspClientMethodType::TAG_ADD:
         stream << "tagAdd";
         break;
+    case HtspClientMethodType::CHANNEL_ADD:
+        stream << "channelAdd";
+        break;
     default:
         stream << "unknown";
     }

@@ -16,6 +16,8 @@ libhtsp_la_SOURCES = \
     GenericHtspMethod.h \
     Htsp.cpp \
     Htsp.h \
+    HtspClientMethodChannelAdd.cpp \
+    HtspClientMethodChannelAdd.h \
     HtspClientMethodTagAdd.cpp \
     HtspClientMethodTagAdd.h \
     HtspMessage.cpp \
