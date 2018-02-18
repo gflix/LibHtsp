@@ -46,6 +46,7 @@
 #define HTSP_METHOD_DVR_ENTRY_ADD "dvrEntryAdd"
 #define HTSP_METHOD_ENABLE_ASYNC_METADATA "enableAsyncMetadata"
 #define HTSP_METHOD_HELLO "hello"
+#define HTSP_METHOD_INITIAL_SYNC_COMPLETED "initialSyncCompleted"
 #define HTSP_METHOD_TAG_ADD "tagAdd"
 #define HTSP_METHOD_TAG_UPDATE "tagUpdate"
 

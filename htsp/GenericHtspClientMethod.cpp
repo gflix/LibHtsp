@@ -42,6 +42,9 @@ std::ostream& operator<<(std::ostream& stream, HtspClientMethodType type)
     case HtspClientMethodType::DVR_ENTRY_ADD:
         stream << "dvrEntryAdd";
         break;
+    case HtspClientMethodType::INITIAL_SYNC_COMPLETED:
+        stream << "initialSyncCompleted";
+        break;
     default:
         stream << "unknown";
     }
