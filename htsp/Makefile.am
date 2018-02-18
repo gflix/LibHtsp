@@ -8,6 +8,8 @@ libhtsp_la_SOURCES = \
     GenericHtspClientMethod.h \
     GenericHtspClientMethodAutorecEntry.cpp \
     GenericHtspClientMethodAutorecEntry.h \
+    GenericHtspClientMethodDvrEntry.cpp \
+    GenericHtspClientMethodDvrEntry.h \
     GenericHtspClientMethodTag.cpp \
     GenericHtspClientMethodTag.h \
     GenericHtspMessageField.cpp \
@@ -24,6 +26,8 @@ libhtsp_la_SOURCES = \
     HtspClientMethodAutorecEntryAdd.h \
     HtspClientMethodChannelAdd.cpp \
     HtspClientMethodChannelAdd.h \
+    HtspClientMethodDvrEntryAdd.cpp \
+    HtspClientMethodDvrEntryAdd.h \
     HtspClientMethodTagAdd.cpp \
     HtspClientMethodTagAdd.h \
     HtspClientMethodTagUpdate.cpp \

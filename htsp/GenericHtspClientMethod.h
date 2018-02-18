@@ -14,6 +14,7 @@ enum class HtspClientMethodType {
     TAG_UPDATE,
     CHANNEL_ADD,
     AUTOREC_ENTRY_ADD,
+    DVR_ENTRY_ADD,
 };
 
 enum class HtspClientMethodAction {

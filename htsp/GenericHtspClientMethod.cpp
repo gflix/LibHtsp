@@ -39,6 +39,9 @@ std::ostream& operator<<(std::ostream& stream, HtspClientMethodType type)
     case HtspClientMethodType::AUTOREC_ENTRY_ADD:
         stream << "autorecEntryAdd";
         break;
+    case HtspClientMethodType::DVR_ENTRY_ADD:
+        stream << "dvrEntryAdd";
+        break;
     default:
         stream << "unknown";
     }
