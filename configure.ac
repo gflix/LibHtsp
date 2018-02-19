@@ -48,6 +48,7 @@ AC_CONFIG_FILES([
     examples/Makefile
     external/googletest/Makefile
     htsp/Makefile
+    htsp/htsp.pc
     tests/Makefile
 ])
 AC_OUTPUT

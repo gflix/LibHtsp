@@ -65,10 +65,17 @@ libhtsp_la_LIBADD = \
 
 headerdir = $(includedir)/htsp
 header_HEADERS = \
-    Htsp.h
+    GenericHtspClientMethod.h \
+    GenericHtspMessageField.h \
+    GenericHtspMethod.h \
+    Htsp.h \
+    HtspMessage.h \
+    HtspMethodAuthenticate.h \
+    HtspMethodEnableAsyncMetadata.h \
+    HtspMethodHello.h
 
-#pkgconfigdir = $(libdir)/pkgconfig
-#pkgconfig_DATA = htsp.pc
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = htsp.pc
 
 MAINTAINERCLEANFILES = \
     Autoconf.h.in \

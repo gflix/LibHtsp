@@ -25,6 +25,7 @@
 /htsp/Autoconf.h.in
 /htsp/Autoconf.h
 /htsp/stamp-h1
+/htsp/htsp.pc
 /tests/gtest
 /tests/gtest.log
 /tests/gtest.trs

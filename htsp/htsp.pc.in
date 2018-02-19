@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: htsp
+Description: Library implementing the Home Tv Streaming Protocol of Tvheadend
+Version: @VERSION@
+Requires: networking >= 0.1.2
+Libs: -L${libdir} -lhtsp
+Cflags: -I${includedir}
