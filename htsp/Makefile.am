@@ -8,6 +8,8 @@ libhtsp_la_SOURCES = \
     GenericHtspClientMethod.h \
     GenericHtspClientMethodAutorecEntry.cpp \
     GenericHtspClientMethodAutorecEntry.h \
+    GenericHtspClientMethodChannel.cpp \
+    GenericHtspClientMethodChannel.h \
     GenericHtspClientMethodDvrEntry.cpp \
     GenericHtspClientMethodDvrEntry.h \
     GenericHtspClientMethodTag.cpp \
@@ -66,6 +68,10 @@ libhtsp_la_LIBADD = \
 headerdir = $(includedir)/htsp
 header_HEADERS = \
     GenericHtspClientMethod.h \
+    GenericHtspClientMethodAutorecEntry.h \
+    GenericHtspClientMethodChannel.h \
+    GenericHtspClientMethodDvrEntry.h \
+    GenericHtspClientMethodTag.h \
     GenericHtspMessageField.h \
     GenericHtspMethod.h \
     Htsp.h \
