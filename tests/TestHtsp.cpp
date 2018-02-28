@@ -5,7 +5,7 @@
 
 TEST(Htsp, PackageInfo)
 {
-    EXPECT_EQ(Flix::Htsp::getPackageInfo(), "libhtsp 0.4.0");
+    EXPECT_EQ(Flix::Htsp::getPackageInfo(), "libhtsp 0.4.1");
 }
 
 TEST(Htsp, Defaults)

@@ -14,6 +14,8 @@ struct HtspClientMethodDvrEntryRequest {
     unsigned int channel;
     int64_t start;
     int64_t stop;
+    int startExtra;
+    int stopExtra;
     int priority;
     std::string title;
     std::string subtitle;

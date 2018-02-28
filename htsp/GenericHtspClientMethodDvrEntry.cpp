@@ -10,6 +10,8 @@ HtspClientMethodDvrEntryRequest::HtspClientMethodDvrEntryRequest(void):
     channel(0),
     start(0),
     stop(0),
+    startExtra(0),
+    stopExtra(0),
     priority(-1),
     enabled(true)
 {
@@ -26,7 +28,9 @@ GenericHtspClientMethodDvrEntry::GenericHtspClientMethodDvrEntry(
     if (message.hasField(HTSP_ID_CHANNEL))
         request.channel = message.getField(HTSP_ID_CHANNEL)->toSigned64();
     request.start = message.getField(HTSP_ID_START)->toSigned64();
+    request.startExtra = message.getField(HTSP_ID_START_EXTRA)->toSigned64();
     request.stop = message.getField(HTSP_ID_STOP)->toSigned64();
+    request.stopExtra = message.getField(HTSP_ID_STOP_EXTRA)->toSigned64();
     request.priority = message.getField(HTSP_ID_PRIORITY)->toSigned64() & 0x07;
     if (message.hasField(HTSP_ID_TITLE))
         request.title = message.getField(HTSP_ID_TITLE)->toString();
@@ -61,8 +65,8 @@ std::string GenericHtspClientMethodDvrEntry::dumpClientMethod(void) const
     stream << "action=" << action << ", ";
     stream << "id=" << request.id << ", ";
     stream << "channel=" << request.channel << ", ";
-    stream << "start=" << request.start << ", ";
-    stream << "stop=" << request.stop << ", ";
+    stream << "start=" << request.start << " (+" << request.startExtra << "min), ";
+    stream << "stop=" << request.stop << " (+" << request.stopExtra << "min), ";
     stream << "priority=" << request.priority << ", ";
     stream << "title=" << request.title << ", ";
     stream << "subtitle=" << request.subtitle << ", ";
