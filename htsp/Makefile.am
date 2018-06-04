@@ -60,10 +60,10 @@ libhtsp_la_SOURCES = \
 
 libhtsp_la_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 libhtsp_la_LIBADD = \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 headerdir = $(includedir)/htsp
 header_HEADERS = \

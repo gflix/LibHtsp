@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([libhtsp], [0.4.1], [felix.mellmann@gmail.com])
+AC_INIT([libhtsp], [0.5.0], [felix.mellmann@gmail.com])
 AC_CONFIG_SRCDIR([htsp/Htsp.cpp])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -20,7 +20,7 @@ AX_CXX_COMPILE_STDCXX_11()
 LT_INIT
 
 # Checks for libraries.
-PKG_CHECK_MODULES([NETWORKING], [networking >= 0.1.2], [], AC_MSG_ERROR([Unable to find networking >= 0.1.2.]))
+PKG_CHECK_MODULES([GLISSEO], [glisseo >= 0.4.0], [], AC_MSG_ERROR([Unable to find glisseo >= 0.4.0.]))
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h limits.h netdb.h])

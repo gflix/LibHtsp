@@ -1,7 +1,7 @@
 #include <htsp/Autoconf.h>
 #include <sstream>
 #include <stdexcept>
-#include <networking/Select.h>
+#include <glisseo/utils/Select.h>
 #include <htsp/HtspTags.h>
 #include <htsp/Htsp.h>
 #include <htsp/HtspClientMethodAutorecEntryAdd.h>

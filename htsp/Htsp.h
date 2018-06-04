@@ -2,7 +2,7 @@
 #define HTSP_HTSP_H_
 
 #include <string>
-#include <networking/tcp/TcpClient.h>
+#include <glisseo/network/tcp/TcpClient.h>
 #include <htsp/GenericHtspClientMethod.h>
 #include <htsp/GenericHtspMethod.h>
 #include <htsp/HtspMessage.h>

@@ -13,55 +13,55 @@ htsp_example_01_SOURCES = \
 
 htsp_example_01_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 htsp_example_01_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 htsp_example_02_SOURCES = \
     HtspExample02.cpp
 
 htsp_example_02_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 htsp_example_02_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 htsp_example_03_SOURCES = \
     HtspExample03.cpp
 
 htsp_example_03_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 htsp_example_03_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 htsp_example_04_SOURCES = \
     HtspExample04.cpp
 
 htsp_example_04_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 htsp_example_04_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 htsp_example_05_SOURCES = \
     HtspExample05.cpp
 
 htsp_example_05_CPPFLAGS = \
     $(AM_CPPFLAGS) \
-    $(NETWORKING_CFLAGS)
+    $(GLISSEO_CFLAGS)
 
 htsp_example_05_LDADD = \
     $(top_builddir)/htsp/libhtsp.la \
-    $(NETWORKING_LIBS)
+    $(GLISSEO_LIBS)
 
 MAINTAINERCLEANFILES = \
     Makefile.in

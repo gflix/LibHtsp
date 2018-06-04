@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include <networking/digest/Sha1.h>
+#include <glisseo/digest/Sha1.h>
 #include <htsp/HtspMethodAuthenticate.h>
 #include <htsp/HtspTags.h>
 
