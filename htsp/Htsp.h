@@ -47,7 +47,7 @@ public:
     static int getDefaultTcpPort(void);
 
 private:
-    TcpClient tcpClient;
+    Glisseo::TcpClient tcpClient;
     std::string receiveBuffer;
 
     std::string authenticationChallenge;

@@ -86,7 +86,7 @@ void Htsp::execute(GenericHtspMethod& method)
 {
     sendMessage(method.getRequestMessage());
 
-    Select select;
+    Glisseo::Select select;
     select.addReadDescriptor(getDescriptor());
     select.setTimeout(15);
 

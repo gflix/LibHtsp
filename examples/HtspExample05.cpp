@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     }
 
     Flix::HtspMessages messages;
-    Flix::Select htspSelect;
+    Glisseo::Select htspSelect;
     htspSelect.addReadDescriptor(htsp.getDescriptor());
     htspSelect.setAutoReloadTimeout(true);
     htspSelect.setTimeout(5);

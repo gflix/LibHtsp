@@ -20,7 +20,7 @@ AX_CXX_COMPILE_STDCXX_11()
 LT_INIT
 
 # Checks for libraries.
-PKG_CHECK_MODULES([GLISSEO], [glisseo >= 0.4.0], [], AC_MSG_ERROR([Unable to find glisseo >= 0.4.0.]))
+PKG_CHECK_MODULES([GLISSEO], [glisseo >= 0.5.2], [], AC_MSG_ERROR([Unable to find glisseo >= 0.5.2.]))
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h float.h limits.h netdb.h])

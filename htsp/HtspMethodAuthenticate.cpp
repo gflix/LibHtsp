@@ -28,7 +28,7 @@ HtspMethodAuthenticate::HtspMethodAuthenticate(
         requestMessage.appendString(HTSP_ID_USERNAME, request.username);
         if (!request.password.empty() && !challenge.empty())
         {
-            Sha1 sha1;
+            Glisseo::Sha1 sha1;
 
             sha1.appendMessage(request.password);
             sha1.appendMessage(challenge);
